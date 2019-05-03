@@ -16,8 +16,8 @@ class WiremockApplication {
 		SpringApplication.run(WiremockApplication, args)
 		startWireMockServer()
 	}
-	
-	private static WireMockServer startWireMockServer() {
+
+	private static void startWireMockServer() {
 		WireMockServer wireMockServer = new WireMockServer(8089)
 
 		// not you need to add the following to /etc/hosts
