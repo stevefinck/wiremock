@@ -19,11 +19,11 @@ class WiremockApplication {
 
 	@Bean(name = 'wireMockServer')
 	private static WireMockServer wireMockServer() {
-		WireMockServer wireMockServer = new WireMockServer(8089)
+		WireMockServer wireMockServer = new WireMockServer(8081)
 
-		// not you need to add the following to /etc/hosts
-		// 127.0.0.1   oms.mt.bestbuy.com
-		configureFor("oms.mt.bestbuy.com", 8089);
+		// note you need to add the following to /etc/hosts
+		// 127.0.0.1   oms.mt.sf.com
+		configureFor("oms.mt.sf.com", 8081);
 		wireMockServer.start()
 
 		stubFor(get("/order")
