@@ -3,6 +3,7 @@ package com.sf.wiremock
 import com.github.tomakehurst.wiremock.WireMockServer
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.context.annotation.Bean
 
 import static com.github.tomakehurst.wiremock.client.WireMock.configureFor
 import static com.github.tomakehurst.wiremock.client.WireMock.get
@@ -14,10 +15,10 @@ class WiremockApplication {
 
 	static void main(String[] args) {
 		SpringApplication.run(WiremockApplication, args)
-		startWireMockServer()
 	}
 
-	private static void startWireMockServer() {
+	@Bean(name = 'wireMockServer')
+	private static WireMockServer wireMockServer() {
 		WireMockServer wireMockServer = new WireMockServer(8089)
 
 		// not you need to add the following to /etc/hosts
@@ -27,5 +28,7 @@ class WiremockApplication {
 
 		stubFor(get("/fine-with-body")
 				.willReturn(ok("body content")));
+
+		return wireMockServer
 	}
 }
