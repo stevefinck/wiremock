@@ -26,8 +26,11 @@ class WiremockApplication {
 		configureFor("oms.mt.bestbuy.com", 8089);
 		wireMockServer.start()
 
-		stubFor(get("/fine-with-body")
-				.willReturn(ok("body content")));
+		stubFor(get("/order")
+				.willReturn(ok("orderId: 32, sku: 6")));
+
+		stubFor(get("/order-payment")
+				.willReturn(ok("orderId: 32, cc: visa, price: 32")));
 
 		return wireMockServer
 	}

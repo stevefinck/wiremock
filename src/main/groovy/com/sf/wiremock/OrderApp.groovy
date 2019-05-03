@@ -24,13 +24,15 @@ class OrderApp {
     }
 
     @RequestMapping(value = '/mock/{serviceOrderId}', method = [RequestMethod.GET], produces = [MediaType.APPLICATION_JSON_VALUE])
-    public String echoMock(@PathVariable String serviceOrderId) {
+    public String getOrder(@PathVariable String serviceOrderId) {
 
 //        WireMockServer wireMockServer = startWireMockServer()
 
         RestTemplate template = new RestTemplate()
 
-        String response = template.getForObject("http://oms.mt.bestbuy.com:8089/__admin", String.class)
+        String response = template.getForObject("http://oms.mt.bestbuy.com:8089/order", String.class)
+
+        response = " " + template.getForObject("http://oms.mt.bestbuy.com:8089/order-payment", String.class)
 
 //        wireMockServer.stop();
         return serviceOrderId + " mocks " + response;
